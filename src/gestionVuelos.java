@@ -4,8 +4,6 @@ public class gestionVuelos {
 
     private Vuelos[] vuelos;
 
-    private Vuelos vuelo;
-
     public gestionVuelos(){
         vuelos = new Vuelos[3];
         for(int i = 0; i< vuelos.length;i++){
