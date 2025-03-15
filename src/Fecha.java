@@ -10,6 +10,13 @@ public class Fecha {
         this.year = year;
     }
 
+    public Fecha(){
+        this.dia = 0;
+        this.mes = 0;
+        this.year= 0;
+
+    }
+
     public int getDia() {
         return dia;
     }

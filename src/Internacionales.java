@@ -4,7 +4,7 @@ public class Internacionales extends Vuelos {
     private String paisesEscala;
 
     public Internacionales(int id, String nombre, String origen, String destino, Fecha fecha, int pasajeros, double precio, int escala, String paisesEscala){
-        super();
+        super(id,nombre,origen,destino,fecha,pasajeros,precio);
         this.escala = escala;
         this.paisesEscala = paisesEscala;
     }
@@ -35,7 +35,7 @@ public class Internacionales extends Vuelos {
       return sb.toString();
     }
 
-    public double diferenciaPrecio(double precio, int mes){
+    public double diferenciaPrecio(){
 
         double precioReal = 0;
 
@@ -46,6 +46,7 @@ public class Internacionales extends Vuelos {
         return precioReal;
     }
 
+    /* el descuento de escalas lo tnego que poner con el descuento de arriba
     public double dctoEscalas(double precio, int escala){
         if (escala>1)
             for (int i = 0; i<escala; i++){
@@ -54,4 +55,6 @@ public class Internacionales extends Vuelos {
         return precio;
 
     }
+
+     */
 }

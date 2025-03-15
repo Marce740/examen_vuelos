@@ -6,6 +6,11 @@ public class gestionVuelos {
 
     public gestionVuelos(){
         vuelos = new Vuelos[3];
+
+    }
+
+    public gestionVuelos(int x){
+        vuelos = new Vuelos[x];
         for(int i = 0; i< vuelos.length;i++){
             if(i%2==0 && vuelos[i] == null){
                 vuelos[i] = new Nacionales();
@@ -19,18 +24,6 @@ public class gestionVuelos {
     public void mostrarVuelos(){
         for(int i = 0; i< vuelos.length; i++){
             System.out.println(vuelos[i]);
-        }
-    }
-
-    public void setGestionVuelos(int x){
-        vuelos = new Vuelos[x];
-        for(int i = 0; i< vuelos.length;i++){
-            if(i%2==0 && vuelos[i] == null){
-                vuelos[i] = new Nacionales();
-            }
-            else if (vuelos[i] ==null) {
-                vuelos[i]= new Internacionales();
-            }
         }
     }
 

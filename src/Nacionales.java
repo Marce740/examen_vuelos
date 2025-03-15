@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Nacionales extends Vuelos {
 
     public Nacionales(int id, String nombre, String origen, String destino, Fecha fecha, int pasajeros, double precio){
-        super();
+        super(id,nombre,origen,destino,fecha,pasajeros,precio);
     }
 
     public Nacionales() {
@@ -20,12 +20,13 @@ public class Nacionales extends Vuelos {
     }
 
 
-    public double diferenciaPrecio(double precio, int mes){
+    public double diferenciaPrecio(){
+        double precio = getPrecio();
 
-        if (mes == 6 ){
-            precio = 0.20*precio + precio;
-        } else if (mes == 7) {
-            precio = 0.30*precio + precio;
+        if (getFecha().getMes() == 6 ){
+            precio = 0.20 * precio + precio;
+        } else if (getFecha().getMes() == 7) {
+            precio = 0.30 * precio + precio;
         }
 
         return precio;

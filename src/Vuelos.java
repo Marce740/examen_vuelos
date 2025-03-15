@@ -1,4 +1,4 @@
-import java.util.Arrays;
+
 
 public abstract class Vuelos {
 
@@ -6,12 +6,13 @@ public abstract class Vuelos {
     private String nombre;
     private String origen;
     private String destino;
-    private Fecha[] fecha;
+    private Fecha fecha;
     private int pasajeros;
     private double precio;
 
-    public Vuelos(int id, String origen, String destino, Fecha[] fecha, int pasajeros, double precio){
+    public Vuelos(int id, String nombre, String origen, String destino, Fecha fecha, int pasajeros, double precio){
         this.id=id;
+        this.nombre=nombre;
         this.origen=origen;
         this.destino=destino;
         this.fecha=fecha;
@@ -21,9 +22,10 @@ public abstract class Vuelos {
 
     public Vuelos() {
         this.id=0;
+        this.nombre="";
         this.origen="";
         this.destino="";
-        this.fecha= new Fecha[3];
+        this.fecha= new Fecha();
         this.pasajeros= 0;
         this.precio=0;
     }
@@ -60,11 +62,11 @@ public abstract class Vuelos {
         this.destino = destino;
     }
 
-    public Fecha[] getFecha() {
+    public Fecha getFecha() {
         return fecha;
     }
 
-    public void setFecha(Fecha[] fecha) {
+    public void setFecha(Fecha fecha) {
         this.fecha = fecha;
     }
 
@@ -94,7 +96,7 @@ public abstract class Vuelos {
         sc.append(" destino:");
         sc.append(destino);
         sc.append(" fecha:");
-        sc.append(Arrays.toString(fecha));
+        sc.append(fecha);
         sc.append(" pasajeros:");
         sc.append(pasajeros);
         sc.append(" precio:");
@@ -103,7 +105,7 @@ public abstract class Vuelos {
     }
 
 
-   public abstract double diferenciaPrecio(double precio, int mes);
+   public abstract double diferenciaPrecio();
 
 }
 
