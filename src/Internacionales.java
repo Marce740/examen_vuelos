@@ -39,8 +39,8 @@ public class Internacionales extends Vuelos {
 
         double precioReal = 0;
 
-        if(mes == 6 || mes == 7){
-            precioReal = 0.25 * precio + precio;
+        if(getFecha().getMes() == 6 || getFecha().getMes() == 7){
+            precioReal = 0.25 * getPrecio() + getPrecio();
         }
 
         return precioReal;
