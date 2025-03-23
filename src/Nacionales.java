@@ -21,12 +21,15 @@ public class Nacionales extends Vuelos {
 
 
     public double diferenciaPrecio(){
+
         double precio = getPrecio();
 
         if (getFecha().getMes() == 6 ){
             precio = 0.20 * precio + precio;
+            setPrecio(precio);
         } else if (getFecha().getMes() == 7) {
             precio = 0.30 * precio + precio;
+            setPrecio(precio);
         }
 
         return precio;

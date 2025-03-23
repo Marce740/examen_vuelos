@@ -1,22 +1,42 @@
 import java.util.Scanner;
 
-public class gestionVuelos {
+public class GestionVuelos {
 
     private Vuelos[] vuelos;
 
-    public gestionVuelos(){
+    public GestionVuelos(){
         vuelos = new Vuelos[3];
-
-    }
-
-    public gestionVuelos(int x){
-        vuelos = new Vuelos[x];
         for(int i = 0; i< vuelos.length;i++){
-            if(i%2==0 && vuelos[i] == null){
+            if(i == 0){
+                vuelos[0] = null;
+            }
+            else if(i == vuelos.length-1){
+                vuelos[i] = null;
+            }
+            else if(i%2==0 && vuelos[i] == null ){
                 vuelos[i] = new Nacionales();
             }
-            else if (vuelos[i] ==null) {
+            else if (i%2 != 0 && vuelos[i] == null) {
                 vuelos[i]= new Internacionales();
+            }
+
+        }
+    }
+
+    public GestionVuelos(int x){
+        vuelos = new Vuelos[x];
+        for(int i = 0; i< vuelos.length;i++){
+            if(i == 0){
+                vuelos[0] = null;
+            }
+            else if(i%2==0 && vuelos[i] == null){
+                vuelos[i] = new Nacionales();
+            }
+            else if (i%2 != 0 && vuelos[i] == null) {
+                vuelos[i]= new Internacionales();
+            }
+            else if(i == vuelos.length-1){
+                vuelos[i] = null;
             }
         }
     }
@@ -28,7 +48,6 @@ public class gestionVuelos {
     }
 
     public boolean bajaVuelo(int id){
-
         for(int i = 0; i<vuelos.length;i++){
             if(vuelos[i].getId() == id && vuelos[i]!=null){
                 vuelos[i] = null;
@@ -38,96 +57,70 @@ public class gestionVuelos {
         return false;
     }
 
-    public void menuAlta(){
-        Scanner lector = new Scanner(System.in);
-        System.out.println("Introduce datos para el nuevo vuelo, 1: si es internacional, 2: si es nacional, cualquier otro numero es exit");
-        int a = lector.nextInt();
-        lector.nextLine();
-        if(a == 1){
-            System.out.println("Introduce id:");
-            int id = lector.nextInt();
-            lector.nextLine();
-            System.out.println("Introduce nombre de aerolinea:");
-            String nombre = lector.nextLine();
-
-            System.out.println("Introduce origen del vuelo:");
-            String origen = lector.nextLine();
-
-            System.out.println("Introduce destino del vuelo: ");
-            String destino = lector.nextLine();
-
-            System.out.println("Introduce por orden fecha: dia, mes, año, con enter de por medio");
-            int dia = lector.nextInt();
-            lector.nextLine();
-            int mes = lector.nextInt();
-            lector.nextLine();
-            int year = lector.nextInt();
-            lector.nextLine();
-            Fecha fecha = new Fecha(dia, mes, year);
-
-            System.out.println("Introduce numero de pasajeros:");
-            int pasajeros = lector.nextInt();
-            lector.nextLine();
-            System.out.println("Introduce precio base:");
-            double precio = lector.nextDouble();
-            lector.nextLine();
-
-            System.out.println("Introduce cantidad de escalas:");
-            int escalas = lector.nextInt();
-            lector.nextLine();
-
-            System.out.println("Introduce los paises de escala, separado por comas");
-            String paises = lector.nextLine();
-
-            Internacionales inter = new Internacionales(id, nombre, origen, destino, fecha, pasajeros, precio, escalas, paises);
-
-
-
+    public int hayHueco(){
+        int pos = -1;
+        for(int i = 0; i<vuelos.length && pos ==-1 ; i++){
+            if (vuelos[i] == null){
+                pos = i;
+            }
         }
-        if(a == 2){
-            System.out.println("Introduce id:");
-            int id = lector.nextInt();
-            lector.nextLine();
-            System.out.println("Introduce nombre de aerolinea:");
-            String nombre = lector.nextLine();
+        return pos;
+    }
 
-            System.out.println("Introduce origen del vuelo:");
-            String origen = lector.nextLine();
-
-            System.out.println("Introduce destino del vuelo: ");
-            String destino = lector.nextLine();
-
-            System.out.println("Introduce por orden fecha: dia, mes, año, con enter de por medio");
-            int dia = lector.nextInt();
-            lector.nextLine();
-            int mes = lector.nextInt();
-            lector.nextLine();
-            int year = lector.nextInt();
-            lector.nextLine();
-            Fecha fecha = new Fecha(dia, mes, year);
-
-            System.out.println("Introduce numero de pasajeros:");
-            int pasajeros = lector.nextInt();
-            lector.nextLine();
-            System.out.println("Introduce precio base:");
-            double precio = lector.nextDouble();
-            lector.nextLine();
-
-            Nacionales nac = new Nacionales(id, nombre, origen, destino, fecha, pasajeros, precio);
-
+    public void addVuelo(Vuelos vuelo){
+        int pos = hayHueco();
+        if (pos != -1){
+            vuelos[pos] = vuelo;
         }
+
     }
 
 
-    public boolean altaVuelo(){
+    public Vuelos altaVuelo(){
 
-        for(int i = 0; i<vuelos.length;i++){
-            if(i%2==0 && vuelos[i]==null){
-                vuelos[i] = new Nacionales();
-                return true;
-            }
+        Vuelos vueloNuevo = null;
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce 1 para internacionales o 2 para Nacionales");
+        int opcion = sc.nextInt();
+        System.out.println("Introduce el id:");
+        int id = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Introduce el nombre:");
+        String nombre = sc.nextLine();
+        sc.nextLine();
+        System.out.println("Introduce el origen:");
+        String origen = sc.nextLine();
+        System.out.println("Introduce el destino:");
+        String destino = sc.nextLine();
+        System.out.println("Introduce el dia del vuelo:");
+        int dia = sc.nextInt();
+        System.out.println("Introduce el mes del vuelo:");
+        int mes = sc.nextInt();
+        System.out.println("Introduce el año del vuelo");
+        int anio = sc.nextInt();
+        System.out.println("Introduce el # de pasajeros");
+        int pasajeros = sc.nextInt();
+        System.out.println("Introduce el precio");
+        double precio = sc.nextDouble();
+
+        switch(opcion){
+            case 1: //Internacionales
+                System.out.println("Introduce numero de escalas");
+                int escala = sc.nextInt();
+                System.out.println("Introduce en qué paises hará escalas:");
+                String paisesEscala = sc.nextLine();
+                vueloNuevo = new Internacionales(id, nombre, origen, destino, new Fecha(dia, mes, anio),pasajeros,precio,escala,paisesEscala);
+                break;
+
+            case 2: //Nacionales
+                vueloNuevo = new Nacionales(id, nombre, origen, destino, new Fecha(dia, mes, anio), pasajeros, precio);
+            default:
+                System.out.println("Introduce una opcion valida");
+
         }
-        return false;
+
+        return vueloNuevo;
     }
 
 
@@ -142,18 +135,7 @@ public class gestionVuelos {
         return false;
     }
 
-    /*
-    public boolean modificarVueloInt(int id, int escala, String pais){
-        for(int i = 0; i< vuelos.length; i++){
-            if(vuelos[i].getId() == id && vuelos[i]!=null && vuelo instanceof Internacionales){
-                vuelos[i].getEscala() ==
-                return true;
-            }
-        }
-        return false;
-    }
 
-     */
 
 
 

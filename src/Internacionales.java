@@ -37,24 +37,19 @@ public class Internacionales extends Vuelos {
 
     public double diferenciaPrecio(){
 
-        double precioReal = 0;
+        double precio = 0;
 
         if(getFecha().getMes() == 6 || getFecha().getMes() == 7){
-            precioReal = 0.25 * getPrecio() + getPrecio();
+            precio = 0.25 * getPrecio() + getPrecio();
+            setPrecio(precio);
+        } else if (getEscala() > 0) {
+            precio = getPrecio() - 0.20 * getPrecio();
+            setPrecio(precio);
+
         }
 
-        return precioReal;
-    }
-
-    /* el descuento de escalas lo tnego que poner con el descuento de arriba
-    public double dctoEscalas(double precio, int escala){
-        if (escala>1)
-            for (int i = 0; i<escala; i++){
-                precio = precio - 0.2 * precio;
-            }
         return precio;
-
     }
 
-     */
+
 }
